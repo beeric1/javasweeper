@@ -18,25 +18,25 @@
         <menus>
           <Menu mnemonicParsing="false" text="Game">
             <items>
-              <MenuItem mnemonicParsing="false" text="New" />
+              <MenuItem fx:id="newgame" mnemonicParsing="false" text="New" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Exit" />
+                  <MenuItem fx:id="exitgame" mnemonicParsing="false" text="Exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Difficulty">
             <items>
-              <MenuItem mnemonicParsing="false" text="Low" />
-                  <MenuItem mnemonicParsing="false" text="Medium" />
-                  <MenuItem mnemonicParsing="false" text="High" />
+              <MenuItem fx:id="low" mnemonicParsing="false" text="Low" />
+                  <MenuItem fx:id="medium" mnemonicParsing="false" text="Medium" />
+                  <MenuItem fx:id="high" mnemonicParsing="false" text="High" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Custom" />
+                  <MenuItem fx:id="custom" mnemonicParsing="false" text="Custom" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane fx:id="field" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -49,18 +49,18 @@
       </GridPane>
    </center>
    <bottom>
-      <HBox prefHeight="0.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="0.0" prefWidth="200.0" spacing="2.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <HBox prefHeight="100.0" prefWidth="80.0" spacing="5.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mines left:" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                  <Text fx:id="mines" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <HBox prefHeight="100.0" prefWidth="0.0" spacing="5.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                  <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
                </children>
             </HBox>
          </children>
