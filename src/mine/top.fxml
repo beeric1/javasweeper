@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<MenuBar xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="mine.TopController"
+         BorderPane.alignment="CENTER">
+<menus>
+    <Menu mnemonicParsing="false" text="Game">
+        <items>
+            <MenuItem fx:id="newgame" mnemonicParsing="false" text="New" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="exitgame" mnemonicParsing="false" text="Exit" />
+        </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Difficulty">
+        <items>
+            <MenuItem fx:id="low" mnemonicParsing="false" text="Low" />
+            <MenuItem fx:id="medium" mnemonicParsing="false" text="Medium" />
+            <MenuItem fx:id="high" mnemonicParsing="false" text="High" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="custom" mnemonicParsing="false" text="Custom" />
+        </items>
+    </Menu>
+</menus>
+</MenuBar>

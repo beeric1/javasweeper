@@ -1,7 +1,10 @@
 package mine;
 
 import javafx.fxml.*;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -35,10 +38,26 @@ public class Controller {
     @FXML
     private Text time;
 
-    //Play ground
     @FXML
-    private GridPane field;
+    private BorderPane border;
 
 
+    public GridPane addButtons(int n){
+
+        GridPane field = new GridPane();
+
+        for (int i = 0; i <n ; i++) {
+
+            for (int j = 0; j < n; j++) {
+
+                field.add(new Button("O"),i,j);
+
+            }
+        }
+
+        return field;
+
+
+    }
 
 }
