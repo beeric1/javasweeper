@@ -1,28 +1,55 @@
 package mine;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 
 public class TopController {
 
-    //Game
-    @FXML
-    private MenuItem newgame;
+    private SceneCreator creator;
+
+    public void setCreator(SceneCreator creator) {
+        this.creator = creator;
+    }
 
     @FXML
-    private MenuItem exitgame;
-
-    //Difficulty
-    @FXML
-    private MenuItem low;
+    private void exitGame(){
+        Platform.exit();
+    }
 
     @FXML
-    private MenuItem medium;
+    private void newGame(){
+        low();
+    }
+
+
+    private void startGame(int n){
+        try {
+            creator.createScene(n);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
-    private MenuItem high;
+    private void low(){
+        startGame(10);
+    }
 
     @FXML
-    private MenuItem custom;
+    private void medium(){
+        startGame(20);
+    }
+
+    @FXML
+    private void high(){
+        startGame(30);
+    }
+
+    @FXML
+    private void custom(){
+
+    }
+
 
 }
