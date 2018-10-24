@@ -55,8 +55,18 @@ public class Main extends Application {
             for (int j = 0; j < n; j++) {
 
                 Button button = new Button("O");
-                button.setOnAction(e -> {
-                    ((Button)e.getSource()).setText("X");
+                button.setOnMouseClicked(e -> {
+                    if(e.isShiftDown()){
+                        if(((Button)e.getSource()).getText().equals("O")){
+                            ((Button)e.getSource()).setText("F");
+                        }else {
+                            ((Button)e.getSource()).setText("O");
+                        }
+
+                    }else {
+                        ((Button)e.getSource()).setText("Y");
+                    }
+
                     GridPane.getRowIndex((Node) e.getSource());
                     GridPane.getColumnIndex((Node) e.getSource());
                 });
