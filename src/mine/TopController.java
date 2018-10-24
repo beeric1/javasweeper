@@ -1,5 +1,6 @@
 package mine;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 
@@ -24,5 +25,10 @@ public class TopController {
 
     @FXML
     private MenuItem custom;
+
+    @FXML
+    private void exitGame(){
+        Platform.exit();
+    }
 
 }
