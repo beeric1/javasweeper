@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private Controller controller;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -30,9 +30,6 @@ public class Main extends Application {
         primaryStage.setTitle("JavaSweeper");
         primaryStage.setScene(new Scene(border, 400, 500));
 
-        controller = new Controller();
-
-        controller.addButtons(10);
 
 
 
