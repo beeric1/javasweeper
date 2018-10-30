@@ -12,12 +12,15 @@ import javafx.stage.Stage;
 public class SceneCreator {
 
     private Stage stage;
+    private MineCheck check = new MineCheck();
+    public boolean first = true;
 
     public SceneCreator(Stage stage) {
         this.stage = stage;
     }
 
     public void createScene(int n) throws Exception{
+
 
 
         //Parent top = FXMLLoader.load(getClass().getResource("top.fxml"));
@@ -49,13 +52,32 @@ public class SceneCreator {
 
     public GridPane addButtons(int n){
 
+        switch(n){
+            case 10:
+                check.mineNr = 20;
+                break;
+            case 20:
+                check.mineNr = 30;
+                break;
+            default:
+                check.mineNr = 40;
+        }
+        check.mineNr = 10;
+        check.hSize = n;
+        check.vSize = n;
+
+
+
         GridPane field = new GridPane();
+
 
         for (int i = 0; i <n ; i++) {
 
             for (int j = 0; j < n; j++) {
 
-                Button button = new Button("O");
+                Button button = new Button("  ");
+                button.setPrefHeight(1);
+                button.setPrefWidth(1);
                 button.setOnMouseClicked(e -> {
                     if(e.isShiftDown()){
                         if(((Button)e.getSource()).getText().equals("O")){
@@ -65,11 +87,21 @@ public class SceneCreator {
                         }
 
                     }else {
-                        ((Button)e.getSource()).setText("Y");
+                        int x = GridPane.getRowIndex((Node) e.getSource());
+                        int y = GridPane.getColumnIndex((Node) e.getSource());
+
+                        if(first){
+                            check.createField(y,x);
+                            first = false;
+                        }
+
+                        //get stuff to display
+
+                        Integer result =  check.field[y][x];
+                        ((Button)e.getSource()).setText(result.toString());
                     }
 
-                    GridPane.getRowIndex((Node) e.getSource());
-                    GridPane.getColumnIndex((Node) e.getSource());
+
                 });
                 field.add(button,i,j);
 
