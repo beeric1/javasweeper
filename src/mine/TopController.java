@@ -25,6 +25,7 @@ public class TopController {
 
     private void startGame(int n){
         try {
+            creator.first = true;
             creator.createScene(n);
         } catch (Exception e) {
             e.printStackTrace();
