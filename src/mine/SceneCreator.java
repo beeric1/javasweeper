@@ -99,6 +99,11 @@ public class SceneCreator {
 
                         Integer result =  check.field[y][x];
                         ((Button)e.getSource()).setText(result.toString());
+
+                        if(result.equals(9)){
+                            //game over
+                            stage.setTitle("JavaSweeper - Verloren!");
+                        }
                     }
 
 
