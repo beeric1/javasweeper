@@ -112,6 +112,7 @@ public class SceneCreator {
                         ((Button)e.getSource()).setText(result.toString());
 
                         if(result.equals(9)){
+                            ((Button)e.getSource()).setText("X");
                             //game over
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Game Over");
