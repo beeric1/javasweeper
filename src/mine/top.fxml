@@ -20,8 +20,6 @@
             <MenuItem mnemonicParsing="false" onAction="#low" text="Low" />
             <MenuItem mnemonicParsing="false" onAction="#medium" text="Medium" />
             <MenuItem mnemonicParsing="false" onAction="#high" text="High" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#custom" text="Custom" />
         </items>
     </Menu>
 </menus>
