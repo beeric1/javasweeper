@@ -21,6 +21,7 @@ public class Main extends Application {
 
 
         primaryStage.setTitle("JavaSweeper");
+        primaryStage.setResizable(false);
         creator.createScene(10);
 
         primaryStage.show();

@@ -66,8 +66,6 @@ public class SceneCreator {
         check.hSize = n;
         check.vSize = n;
 
-
-
         GridPane field = new GridPane();
 
 
@@ -76,14 +74,12 @@ public class SceneCreator {
             for (int j = 0; j < n; j++) {
 
                 Button button = new Button("  ");
-                button.setPrefHeight(1);
-                button.setPrefWidth(1);
                 button.setOnMouseClicked(e -> {
                     if(e.isShiftDown()){
-                        if(((Button)e.getSource()).getText().equals("O")){
+                        if(((Button)e.getSource()).getText().equals("  ")){
                             ((Button)e.getSource()).setText("F");
                         }else {
-                            ((Button)e.getSource()).setText("O");
+                            ((Button)e.getSource()).setText("  ");
                         }
 
                     }else {
@@ -97,7 +93,7 @@ public class SceneCreator {
 
                         //get stuff to display
 
-                        Integer result =  check.field[y][x];
+                        Integer result =  check.field[x][y];
                         ((Button)e.getSource()).setText(result.toString());
 
                         if(result.equals(9)){
@@ -108,6 +104,8 @@ public class SceneCreator {
 
 
                 });
+
+                button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 field.add(button,i,j);
 
             }
