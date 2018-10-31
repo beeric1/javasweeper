@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -98,7 +99,14 @@ public class SceneCreator {
 
                         if(result.equals(9)){
                             //game over
-                            stage.setTitle("JavaSweeper - Verloren!");
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Game Over");
+
+                            // Header Text: null
+                            alert.setHeaderText(null);
+                            alert.setContentText("You lost. Try again!");
+
+                            alert.showAndWait();
                         }
                     }
 
