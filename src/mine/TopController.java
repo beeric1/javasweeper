@@ -3,6 +3,9 @@ package mine;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 
+/**
+ * @author Eric
+ */
 public class TopController {
 
     private SceneCreator creator;
