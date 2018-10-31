@@ -3,6 +3,9 @@ package mine;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
+/**
+ * @author Tiago
+ */
 public class BottomController {
 
     //Status bar

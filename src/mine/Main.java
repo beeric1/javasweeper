@@ -3,6 +3,9 @@ package mine;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * @author Eric
+ */
 public class Main extends Application {
 
 

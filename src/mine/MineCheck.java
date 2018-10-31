@@ -1,5 +1,9 @@
 package mine;
 
+
+/**
+ * @author Tiago
+ */
 public class MineCheck {
 
     int vSize = 10;
