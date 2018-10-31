@@ -15,6 +15,8 @@ public class SceneCreator {
     private Stage stage;
     private MineCheck check = new MineCheck();
     public boolean first = true;
+    private int uncoverd = 0;
+    private int fieldsToUncover;
 
     public SceneCreator(Stage stage) {
         this.stage = stage;
@@ -57,7 +59,7 @@ public class SceneCreator {
 
         switch(n){
             case 10:
-                check.mineNr = 20;
+                check.mineNr = 10;
                 break;
             case 20:
                 check.mineNr = 30;
@@ -92,13 +94,17 @@ public class SceneCreator {
                         int y = GridPane.getColumnIndex((Node) e.getSource());
 
                         if(first){
-                            check.createField(y,x);
+                            check.createField(x,y);
+                            fieldsToUncover = (n * n) - check.mineNr;
                             first = false;
                         }
 
                         //get stuff to display
 
                         Integer result =  check.field[x][y];
+                        if(((Button)e.getSource()).getText().equals("  ") ||((Button)e.getSource()).getText().equals("F")){
+                            uncoverd++;
+                        }
                         ((Button)e.getSource()).setText(result.toString());
 
                         if(result.equals(9)){
@@ -109,6 +115,17 @@ public class SceneCreator {
                             alert.setHeaderText(null);
                             alert.setContentText("You lost. Try again!");
                             alert.showAndWait();
+                        }else {
+
+                            if(fieldsToUncover == uncoverd){
+                                //gewonnen
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Victory");
+                                // Header Text: null
+                                alert.setHeaderText(null);
+                                alert.setContentText("You win!");
+                                alert.showAndWait();
+                            }
                         }
                     }
 

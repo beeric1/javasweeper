@@ -9,10 +9,6 @@ public class BottomController {
     @FXML
     private Text mines;
 
-    @FXML
-    private Text time;
-
-
 
     public void setMines(int n){
         mines.setText(String.valueOf(n));
