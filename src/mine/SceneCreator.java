@@ -19,10 +19,10 @@ public class SceneCreator {
     public SceneCreator(Stage stage) {
         this.stage = stage;
     }
+    private TopController controllerTop;
+    private BottomController controllerBottom;
 
     public void createScene(int n) throws Exception{
-
-
 
         //Parent top = FXMLLoader.load(getClass().getResource("top.fxml"));
         //Parent bottom = FXMLLoader.load(getClass().getResource("bottom.fxml"));
@@ -32,9 +32,10 @@ public class SceneCreator {
         Parent top = (Parent)loaderTop.load();
         Parent bottom = (Parent)loaderBottom.load();
 
-        TopController controllerTop = (TopController)loaderTop.getController();
+        controllerTop = (TopController)loaderTop.getController();
         controllerTop.n = n;
-        BottomController controllerBottom = (BottomController)loaderBottom.getController();
+        controllerBottom = (BottomController)loaderBottom.getController();
+        controllerBottom.setMines(n);
 
         controllerTop.setCreator(this);
 
@@ -80,8 +81,10 @@ public class SceneCreator {
                     if(e.isShiftDown()){
                         if(((Button)e.getSource()).getText().equals("  ")){
                             ((Button)e.getSource()).setText("F");
+                            controllerBottom.minesMinus();
                         }else {
                             ((Button)e.getSource()).setText("  ");
+                            controllerBottom.minesPlus();
                         }
 
                     }else {
@@ -102,11 +105,9 @@ public class SceneCreator {
                             //game over
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Game Over");
-
                             // Header Text: null
                             alert.setHeaderText(null);
                             alert.setContentText("You lost. Try again!");
-
                             alert.showAndWait();
                         }
                     }
