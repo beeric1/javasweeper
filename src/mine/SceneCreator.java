@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -14,14 +15,16 @@ public class SceneCreator {
     private Stage stage;
     private MineCheck check = new MineCheck();
     public boolean first = true;
+    private int uncoverd = 0;
+    private int fieldsToUncover;
 
     public SceneCreator(Stage stage) {
         this.stage = stage;
     }
+    private TopController controllerTop;
+    private BottomController controllerBottom;
 
     public void createScene(int n) throws Exception{
-
-
 
         //Parent top = FXMLLoader.load(getClass().getResource("top.fxml"));
         //Parent bottom = FXMLLoader.load(getClass().getResource("bottom.fxml"));
@@ -31,8 +34,10 @@ public class SceneCreator {
         Parent top = (Parent)loaderTop.load();
         Parent bottom = (Parent)loaderBottom.load();
 
-        TopController controllerTop = (TopController)loaderTop.getController();
-        BottomController controllerBottom = (BottomController)loaderBottom.getController();
+        controllerTop = (TopController)loaderTop.getController();
+        controllerTop.n = n;
+        controllerBottom = (BottomController)loaderBottom.getController();
+
 
         controllerTop.setCreator(this);
 
@@ -42,6 +47,7 @@ public class SceneCreator {
 
         //create field
         border.setCenter(addButtons(n));
+        controllerBottom.setMines(check.mineNr);
 
         Scene scene = new Scene(border);
 
@@ -54,19 +60,17 @@ public class SceneCreator {
 
         switch(n){
             case 10:
-                check.mineNr = 20;
+                check.mineNr = 10;
                 break;
-            case 20:
-                check.mineNr = 30;
+            case 16:
+                check.mineNr = 40;
                 break;
             default:
-                check.mineNr = 40;
+                check.mineNr = 100;
         }
-        check.mineNr = 10;
+
         check.hSize = n;
         check.vSize = n;
-
-
 
         GridPane field = new GridPane();
 
@@ -76,14 +80,14 @@ public class SceneCreator {
             for (int j = 0; j < n; j++) {
 
                 Button button = new Button("  ");
-                button.setPrefHeight(1);
-                button.setPrefWidth(1);
                 button.setOnMouseClicked(e -> {
                     if(e.isShiftDown()){
-                        if(((Button)e.getSource()).getText().equals("O")){
+                        if(((Button)e.getSource()).getText().equals("  ")){
                             ((Button)e.getSource()).setText("F");
+                            controllerBottom.minesMinus();
                         }else {
-                            ((Button)e.getSource()).setText("O");
+                            ((Button)e.getSource()).setText("  ");
+                            controllerBottom.minesPlus();
                         }
 
                     }else {
@@ -91,23 +95,45 @@ public class SceneCreator {
                         int y = GridPane.getColumnIndex((Node) e.getSource());
 
                         if(first){
-                            check.createField(y,x);
+                            check.createField(x,y);
+                            fieldsToUncover = (n * n) - check.mineNr;
                             first = false;
                         }
 
                         //get stuff to display
 
-                        Integer result =  check.field[y][x];
+                        Integer result =  check.field[x][y];
+                        if(((Button)e.getSource()).getText().equals("  ") ||((Button)e.getSource()).getText().equals("F")){
+                            uncoverd++;
+                        }
                         ((Button)e.getSource()).setText(result.toString());
 
                         if(result.equals(9)){
                             //game over
-                            stage.setTitle("JavaSweeper - Verloren!");
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Game Over");
+                            // Header Text: null
+                            alert.setHeaderText(null);
+                            alert.setContentText("You lost. Try again!");
+                            alert.showAndWait();
+                        }else {
+
+                            if(fieldsToUncover == uncoverd){
+                                //gewonnen
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Victory");
+                                // Header Text: null
+                                alert.setHeaderText(null);
+                                alert.setContentText("You win!");
+                                alert.showAndWait();
+                            }
                         }
                     }
 
 
                 });
+
+                button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 field.add(button,i,j);
 
             }

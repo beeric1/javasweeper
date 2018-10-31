@@ -2,11 +2,11 @@ package mine;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
 
 public class TopController {
 
     private SceneCreator creator;
+    public int n = 10;
 
     public void setCreator(SceneCreator creator) {
         this.creator = creator;
@@ -19,11 +19,11 @@ public class TopController {
 
     @FXML
     private void newGame(){
-        low();
+        startGame();
     }
 
 
-    private void startGame(int n){
+    private void startGame(){
         try {
             creator.first = true;
             creator.createScene(n);
@@ -34,17 +34,20 @@ public class TopController {
 
     @FXML
     private void low(){
-        startGame(10);
+        n = 10;
+        startGame();
     }
 
     @FXML
     private void medium(){
-        startGame(20);
+        n = 16;
+        startGame();
     }
 
     @FXML
     private void high(){
-        startGame(30);
+        n = 25;
+        startGame();
     }
 
     @FXML
