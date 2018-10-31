@@ -37,7 +37,7 @@ public class SceneCreator {
         controllerTop = (TopController)loaderTop.getController();
         controllerTop.n = n;
         controllerBottom = (BottomController)loaderBottom.getController();
-        controllerBottom.setMines(n);
+
 
         controllerTop.setCreator(this);
 
@@ -47,6 +47,7 @@ public class SceneCreator {
 
         //create field
         border.setCenter(addButtons(n));
+        controllerBottom.setMines(check.mineNr);
 
         Scene scene = new Scene(border);
 
@@ -61,11 +62,11 @@ public class SceneCreator {
             case 10:
                 check.mineNr = 10;
                 break;
-            case 20:
-                check.mineNr = 30;
+            case 16:
+                check.mineNr = 40;
                 break;
             default:
-                check.mineNr = 40;
+                check.mineNr = 100;
         }
 
         check.hSize = n;

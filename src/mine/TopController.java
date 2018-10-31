@@ -40,13 +40,13 @@ public class TopController {
 
     @FXML
     private void medium(){
-        n = 20;
+        n = 16;
         startGame();
     }
 
     @FXML
     private void high(){
-        n = 30;
+        n = 25;
         startGame();
     }
 
