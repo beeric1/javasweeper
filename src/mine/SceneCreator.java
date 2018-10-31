@@ -33,6 +33,7 @@ public class SceneCreator {
         Parent bottom = (Parent)loaderBottom.load();
 
         TopController controllerTop = (TopController)loaderTop.getController();
+        controllerTop.n = n;
         BottomController controllerBottom = (BottomController)loaderBottom.getController();
 
         controllerTop.setCreator(this);
@@ -63,7 +64,7 @@ public class SceneCreator {
             default:
                 check.mineNr = 40;
         }
-        check.mineNr = 10;
+
         check.hSize = n;
         check.vSize = n;
 
